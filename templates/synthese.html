@@ -1,0 +1,70 @@
+{% extends "baseprof.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Synthèse</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Synthèse</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <h1>Télécharger votre synthèse</h1>
+    <a class="btn download-link" href="/processed/{{ filename }}">Télécharger le PDF traité</a>
+    <div class="action-buttons">
+        <button class="btn approve-btn">Approuver</button>
+        <button class="btn disapprove-btn">Désapprouver</button>
+        <button class="btn modify-btn">Modifier</button>
+    </div>
+    <div class="file-upload">
+        <h2>Importer un fichier</h2>
+        <input type="file" id="fileInput" class="btn file-input" />
+        <button class="btn import-btn" onclick="sendFilePath()">Importer</button>
+    </div>
+</div>
+
+<script>
+    function sendFilePath() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length === 0) {
+            alert('Veuillez sélectionner un fichier.');
+            return;
+        }
+        
+        const filePath = fileInput.files[0].name; // Get the file name
+        fetch('/process-file', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ filePath: filePath })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Fichier importé avec succès.');
+                // Call the function with the file path if needed
+                processFilePath(filePath);
+            } else {
+                alert('Erreur lors de l\'importation du fichier.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Erreur lors de l\'importation du fichier.');
+        });
+    }
+
+    function processFilePath(filePath) {
+        // Function to process the file path
+        console.log('Processing file:', filePath);
+        // Add your processing logic here
+    }
+</script>
+{% endblock %}

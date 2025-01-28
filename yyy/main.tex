@@ -1,0 +1,56 @@
+\documentclass{article}
+
+% Packages nécessaires
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[most]{tcolorbox}
+
+% Définition des couleurs
+\definecolor{LightBlue}{RGB}{173,216,230}
+\definecolor{LightGray}{RGB}{220,220,220}
+
+% Configuration des boîtes
+\newtcolorbox{boxbleu}[1][]{colback=LightBlue, colframe=LightBlue, title=#1}
+\newtcolorbox{boxgris}[1][]{colback=LightGray, colframe=LightGray, title=#1}
+
+
+\begin{document}
+
+\begin{textblock*}{3cm}(0.5cm,1cm)
+    \includegraphics[width=3cm]{D:/lbd/etudiant/static/img/logo2.png}
+\end{textblock*}
+
+\begin{center}
+    \Large \textbf{Théorie Qualitative des Systèmes Différentiels}
+\end{center}
+
+\begin{boxgris}
+Ce document est un support de cours sur la théorie qualitative des systèmes différentiels. Il explique comment analyser le comportement des solutions d'un système différentiel sans les calculer explicitement. 
+\end{boxgris}
+
+\begin{boxbleu}[Concepts Clés]
+Le document commence par définir les concepts clés comme les \textbf{trajectoires} et le \textbf{portrait de phase} d'un système différentiel. Il introduit ensuite la notion de \textbf{flot} d'un système différentiel, qui décrit l'évolution temporelle des solutions. 
+\end{boxbleu}
+
+\begin{boxgris}[Stabilité des Points d'Équilibre]
+Le document se concentre ensuite sur la \textbf{stabilité des points d'équilibre}. Il définit les notions de \textbf{stabilité}, \textbf{stabilité asymptotique}, \textbf{attractivité} et \textbf{répulsivité} d'un point d'équilibre.
+\end{boxgris}
+
+\begin{boxbleu}[Systèmes Différentiels Linéaires]
+La partie principale du document est consacrée à la résolution et l'analyse des \textbf{systèmes différentiels linéaires dans le plan}. Il explique comment classifier les points d'équilibre en utilisant les valeurs propres de la matrice du système. 
+\end{boxbleu}
+
+\begin{boxgris}[Types de Points d'Équilibre]
+Le document détaille les différents types de points d'équilibre possibles : \textbf{nœud}, \textbf{col}, \textbf{foyer}, \textbf{centre}, \textbf{soleil} et \textbf{nœud impropre}. Pour chaque type, il fournit des exemples, des illustrations et explique comment déterminer la nature du point d'équilibre à partir des valeurs propres. 
+\end{boxgris}
+
+Enfin, le document explique comment déterminer la nature d'un point d'équilibre à partir de la \textbf{trace} et du \textbf{déterminant} de la matrice du système.
+
+\begin{boxbleu}[Conclusion]
+En résumé, ce support de cours fournit une introduction complète à la théorie qualitative des systèmes différentiels linéaires dans le plan. 
+\end{boxbleu}
+
+\end{document} 

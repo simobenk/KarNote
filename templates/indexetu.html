@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Accueil</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+                <a class="active" href="#">Accueil</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<ul class="box-info">
+    <li>
+        <i class='bx bxs-spreadsheet' ></i>
+        <span class="text">
+            <h3>Analyse</h3>
+            
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-spreadsheet' ></i>
+        <span class="text">
+            <h3>Traitement de signal</h3>
+            
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-spreadsheet' ></i>
+        <span class="text">
+            <h3>Statistiques</h3>
+            
+        </span>
+    </li>
+</ul>
+
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Synthèse récents</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Synthèse</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='img/Adil.jpg') }}">
+                        <p>Probabilités</p>
+                    </td>
+                    <td>01-03-2024</td>
+                    <td><span class="status pending">Notes non insérées</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='img/Bouchra.jpg') }}">
+                        <p>Analyse</p>
+                    </td>
+                    <td>05-04-2024</td>
+                    <td><span class="status completed">Completé</span></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename='img/Dahi.jpg') }}">
+                        <p>Traitement du signal</p>
+                    </td>
+                    <td>29-02-2024</td>
+                    <td><span class="status process">En cours</span></td>
+                </tr>
+            
+            
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+{% endblock %}

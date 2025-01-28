@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Synthèse</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Synthèse</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <h1>Télécharger votre synthèse</h1>
+    <a class="btn download-link" href="{{ file_url }}" target="_blank" class="btn btn-primary">Télécharger le PDF traité</a>
+</div>
+
+<div>Score: {{ score }}</div>
+
+
+<style>
+/* Styles des boutons */
+.btn {
+    background-color: #7E30E1;
+    color: white;
+    padding: 10px 20px;
+    
+    font-size: 16px;
+
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Pour enlever le soulignement du lien */
+    display: inline-block; /* Pour que les styles de bouton soient appliqués */
+}
+
+.btn:hover {
+    background-color: #542197;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "baseprof.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Synthèse</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Synthèse</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <h1>Télécharger votre synthèse</h1>
+    <a class="btn download-link" href="{{ file_url }}" target="_blank">Télécharger le PDF traité</a>
+    <div class="action-buttons">
+        <button class="btn approve-btn" onclick="approveFile('{{ file_url }}')">Approuver</button>
+        <button class="btn disapprove-btn" onclick="disapproveFile('{{ file_url }}')">Désapprouver</button>
+        <button class="btn modify-btn" onclick="modifyFile('{{ file_url }}')">Modifier</button>
+    </div>
+</div>
+
+<script>
+function approveFile(filePath) {
+    // Function to handle file approval
+    console.log('File approved:', filePath);
+    
+    // Perform AJAX request to Flask route for approval
+    fetch('/approve/' + encodeURIComponent(filePath), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ filePath: filePath })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);  // Log the response from Flask
+        // Handle any additional logic after approval if needed
+    })
+    .catch(error => {
+        console.error('Error approving file:', error);
+        // Handle errors if any
+    });
+}
+
+    function disapproveFile(filePath) {
+        // Function to handle file disapproval
+        console.log('File disapproved:', filePath);
+        // You can perform AJAX request to Flask route for disapproval
+        // Example of handling disapproval logic
+        fetch('/disapprove-pdf', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ filePath: filePath })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Résumé désapprouvé pour le fichier: ' + fileUrl);
+            console.log('Disapproval response:', data);
+            // Handle any UI update after disapproval if needed
+        })
+        .catch(error => {
+            console.error('Error disapproving file:', error);
+            alert('Erreur lors de la désapprobation du résumé.');
+        });
+    }
+
+    function modifyFile(fileUrl) {
+        // Function to handle file modification
+        console.log('File modification requested:', fileUrl);
+        // Example of handling modification logic
+        // You can open a modal or redirect to a modification page, etc.
+        alert('Modification du résumé demandée pour le fichier: ' + fileUrl);
+    }
+</script>
+{% endblock %}

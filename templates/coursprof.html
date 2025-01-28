@@ -1,0 +1,78 @@
+{% extends "baseprof.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Cours</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Menu</a></li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li><a class="active" href="#">Cours</a></li>
+        </ul>
+    </div>
+
+</div>
+  
+<div class="table-data" id="pdf-table">
+    <div class="order">
+        <div class="head">
+            <h3>Votre Speech</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table id="fileTable" >
+            <thead>
+                <tr>
+                    <th>{{speech}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Files will be inserted here -->
+            </tbody>
+        </table>
+    
+    </div>
+</div>
+<form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+    <!-- Input file caché -->
+    <input type="file" name="file" id="fileInput" style="display: none;" onchange="updateFileName(this)">
+
+    <!-- Bouton stylé -->
+    <label for="fileInput" class="custom-file-upload">
+        Choisir un fichier
+    </label>
+
+    <!-- Affichage du nom du fichier sélectionné -->
+    <div id="fileNameDisplay" style="margin-top: 10px;"></div>
+
+    <!-- Bouton Soumettre -->
+    <input type="submit" value="Combiner">
+</form>
+<style>
+    .custom-file-upload {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #7E30E1;
+        color: white;
+        cursor: pointer;
+        border-radius: 36px;
+        border: 1px solid #7E30E1;
+        text-align: center;
+        transition: background 0.3s ease;
+    }
+
+    .custom-file-upload:hover {
+        background: #401873;
+        border-color: #421978;
+    }
+</style>
+<script>
+    function updateFileName(input) {
+        var fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (input.files.length > 0) {
+            fileNameDisplay.textContent = 'Fichier sélectionné : ' + input.files[0].name;
+        } else {
+            fileNameDisplay.textContent = '';
+        }
+    }
+</script>
+{% endblock %}

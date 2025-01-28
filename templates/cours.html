@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Les synthèses approuvées</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Synthèses</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Les synthèses</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom des synthèses</th>
+                    <th>Ouvrir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pdf, file_url in pdf_files.items() %}
+                <tr>
+                    <td>{{ pdf }}</td>
+                    <td>
+                        <a class="btn download-link" href="{{ file_url }}" target="_blank">Ouvrir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+/* Styles des boutons */
+.btn {
+    background-color: #7E30E1;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 36px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #441b79;
+}
+</style>
+
+{% endblock %}

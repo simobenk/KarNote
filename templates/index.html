@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Scholar - Online School HTML5 Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-scholar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <style>
+      /* Import Google font - Poppins */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      a {
+        text-decoration: none;
+      }
+      .header {
+        position: fixed;
+        height: 80px;
+        width: 100%;
+        z-index: 100;
+        padding: 0 20px;
+      }
+      .nav {
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .nav,
+      .nav_item {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav_logo,
+      .nav_link,
+      .button {
+        color: #fff;
+      }
+      .nav_logo {
+        font-size: 25px;
+      }
+      .nav_item {
+        column-gap: 25px;
+      }
+      .nav_link:hover {
+        color: #d9d9d9;
+      }
+      .button {
+        padding: 6px 24px;
+        border: 2px solid #fff;
+        background: transparent;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .button:active {
+        transform: scale(0.98);
+      }
+
+      /* Home */
+      .home {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background-image: url("{{ url_for('static', filename='assets/images/banner-item-01.jpg') }}");
+        background-size: cover;
+        background-position: center;
+      }
+      .home::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 100;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease-out;
+      }
+      .home.show::before {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      /* From */
+      .form_container {
+        position: fixed;
+        max-width: 320px;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.2);
+        z-index: 101;
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s ease-out;
+      }
+      .home.show .form_container {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .signup_form {
+        display: none;
+      }
+      .form_container.active .signup_form {
+        display: block;
+      }
+      .form_container.active .login_form {
+        display: none;
+      }
+      .form_close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #0b0217;
+        font-size: 22px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .form_container h2 {
+        font-size: 22px;
+        color: #0b0217;
+        text-align: center;
+      }
+      .input_box {
+        position: relative;
+        margin-top: 30px;
+        width: 100%;
+        height: 40px;
+      }
+      .input_box input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0 30px;
+        color: #333;
+        transition: all 0.2s ease;
+        border-bottom: 1.5px solid #aaaaaa;
+      }
+      .input_box input:focus {
+        border-color: #1a1579;
+      }
+      .input_box i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: #707070;
+      }
+      .input_box i.email,
+      .input_box i.password {
+        left: 0;
+      }
+      .input_box input:focus ~ i.email,
+      .input_box input:focus ~ i.password {
+        color: #1a1579;
+      }
+      .input_box i.pw_hide {
+        right: 0;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .option_field {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .form_container a {
+        color: #1a1579;
+        font-size: 12px;
+      }
+      .form_container a:hover {
+        text-decoration: underline;
+      }
+      .checkbox {
+        display: flex;
+        column-gap: 8px;
+        white-space: nowrap;
+      }
+      .checkbox input {
+        accent-color: #1a1579;
+      }
+      .checkbox label {
+        font-size: 12px;
+        cursor: pointer;
+        user-select: none;
+        color: #0b0217;
+      }
+      .form_container .button {
+        background: #7d2ae8;
+        margin-top: 30px;
+        width: 100%;
+        padding: 10px 0;
+        border-radius: 10px;
+      }
+      .login_signup {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 15px;
+      }
+      /* Modal Styles */
+      .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 102; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0, 0, 0, 0.6); 
+        backdrop-filter: blur(5px); /* Added blur effect for a modern look */
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto; 
+        padding: 20px;
+        border-radius: 12px; /* Rounded corners */
+        width: 80%; 
+        max-width: 500px; /* Max width to keep it centered and not too wide */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Box shadow for better contrast */
+        animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+      }
+
+      .close {
+        color: #0b0217;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #7d2ae8;
+      }
+
+      .modal-content h2 {
+        font-size: 24px;
+        color: #1a1579;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        font-size: 16px;
+        color: #333;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-info i {
+        color: #7d2ae8; /* Icon color to match the theme */
+        font-size: 24px;
+        margin-right: 10px; /* Space between icon and text */
+      }
+
+      /* Keyframes for fade-in animation */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+    </style>
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{{ url_for('index') }}" class="logo">
+                        <h1>KarNote</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">Accueil</a></li>
+                      <li class="scroll-to-section"><a href="#services">Services</a></li>
+                      <li class="scroll-to-section"><a href="#team">Team</a></li>
+                      <li class="scroll-to-section" id="form-open"><a href="#contact">Login</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+  <section class="home">
+    <div class="form_container">
+      <i class="uil uil-times form_close"></i>
+      <!-- Login Form -->
+      <div class="form login_form">
+          <form action="/login" method="POST"> <!-- Assurez-vous de spécifier la méthode POST -->
+              <h2>Login</h2>
+
+              <div class="input_box">
+                  <input type="text" name="username" placeholder="Enter your username" required />
+                  <i class="uil uil-user username"></i> <!-- Utilisez l'icône d'utilisateur ici -->
+              </div>
+              <div class="input_box">
+                  <input type="password" name="password" placeholder="Enter your password" required />
+                  <i class="uil uil-lock password"></i> <!-- Utilisez l'icône de cadenas ici -->
+                  <i class="uil uil-eye-slash pw_hide"></i>
+              </div>
+
+              <div class="option_field">
+                  <span class="checkbox">
+                      <input type="checkbox" id="check" />
+                      <label for="check">Remember me</label>
+                  </span>
+                  <a href="#" class="forgot_pw">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="button">Login Now</button>
+
+              <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+          </form>
+      </div>
+  </div>
+
+      <!-- Signup Form -->
+      <div class="form signup_form">
+        <form action="#">
+          <h2>Signup</h2>
+
+          <div class="input_box">
+            <input type="email" placeholder="Enter your email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Create password" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" placeholder="Confirm password" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+
+          <button class="button">Signup Now</button>
+
+          <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <span class="category">Notre solution</span>
+                <h2>Avec KarNote, votre prise de note devient plus facile !</h2>
+                <p>Vous n'arrivez pas à vous concentrez en amphithéatre? KarNote vous offre un résumé détaillé de vos cours en tenant compte de vos supports de cours et les explications de vos professeurs.</p>
+                
+              </div>
+            </div>
+            <div class="item item-2">
+              <div class="header-text">
+                <span class="category">Prise de notes</span>
+                <h2>Obtenez une prise de note enrichie avec KarNote</h2>
+                <p>KarNote vous permet d'insérer vos notes personnelles, qu'elles soient électroniques ou manuscrites. Ensuite, le système combine vos notes personnelles avec le résumé généré automatiquement, vous fournissant ainsi un résumé complet.</p>
+                
+              </div>
+            </div>
+            <div class="item item-3">
+              <div class="header-text">
+                <span class="category">Tests</span>
+                <h2>Testez vos connaissances</h2>
+                <p>KarNote analyse vos cours et génère des quiz pour tester vos connaissances.</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{{ url_for('static', filename='assets/images/service-01.png') }}" alt="online degrees">
+            </div>
+            <div class="main-content">
+              <h4>Synthèse</h4>
+              <p>KarNote vous offre une synthèse détaillé de vos cours en tenant compte de vos supports de cours et les explications de vos professeurs.</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{{ url_for('static', filename='assets/images/service-02.png') }}" alt="short courses">
+            </div>
+            <div class="main-content">
+              <h4>Prise de notes</h4>
+              <p>KarNote vous permet d'insérer vos notes personnelles, les combine avec la synthèse, et vous fournit ainsi un résumé complet.</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{{ url_for('static', filename='assets/images/service-03.png') }}" alt="web experts">
+            </div>
+            <div class="main-content">
+              <h4>Testez vos connaissances</h4>
+              <p>KarNote analyse vos cours et génère des quiz pour tester vos connaissances.</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Par où commencer?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Vous avez du mal à maintenir votre concentration dans les amphithéâtres? Elevez votre expérience en amphithéâtre à un autre niveau. Avec KarNote, assimilez vos cours parfaitement, améliorer votre prise de notes et optimiser votre formation.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Comment ça marche?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Avec un simple clic, téléchargez la synthèse du cours, soumettez votre prise de note, testez vos connaissances à l'aide des quizs et des problèmes adaptés à votre expérience
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Pourquoi KarNote?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Plus qu'un simple outil d'aide, KarNote est un outil d'accompagnement. C'est une solution qui vise à accompagner les élèves durant leur parcours d'élève ingénieur.
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>A propos de KarNote</h6>
+            <h2>Qu'est ce qui nous rend les meilleurs?</h2>
+            <p>Karnote est un outil conçu par l'élève, pour l'élève, pour réussir ensemble. Karnote est né d'un besoin des élèves ingénieurs dans les amphithéâtre, il vise à améliorer leur concentration et leur assimilation du cours. </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="team section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="{{ url_for('static', filename='assets/images/member-01.png') }}" alt="">
+              
+              <h4>Nawfal BENHAMDANE</h4>
+              <br>
+              <br>
+              <br>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="{{ url_for('static', filename='assets/images/member-02.png') }}" alt="">
+              
+              <h4>Mohamed BENKIRANE</h4>
+              <br>
+              <br>
+              <br>
+             
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="{{ url_for('static', filename='assets/images/member-03.png') }}" alt="">
+              
+              <h4>Aya BOUKHARI</h4>
+              <br>
+              <br>
+              <br>
+              
+
+ 
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-member">
+            <div class="main-content">
+              <img src="{{ url_for('static', filename='assets/images/member-04.png') }}" alt="">
+              
+              <h4>Doha Chbihi</h4>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="team-member">
+              <div class="main-content">
+                <img src="{{ url_for('static', filename='assets/images/member-05.png') }}" alt="">
+                
+                <h4>Abir CHATBA</h4>
+                <br>
+                <br>
+                <br>
+             
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div> 
+
+  
+
+
+
+
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Projet Learning by Doing - Groupe 8 </p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const formOpenBtn = document.querySelector("#form-open"),
+      home = document.querySelector(".home"),
+      formContainer = document.querySelector(".form_container"),
+      formCloseBtn = document.querySelector(".form_close"),
+      signupBtn = document.querySelector("#signup"),
+      loginBtn = document.querySelector("#login"),
+      pwShowHide = document.querySelectorAll(".pw_hide");
+
+    formOpenBtn.addEventListener("click", () => home.classList.add("show"));
+    formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
+
+    pwShowHide.forEach((icon) => {
+      icon.addEventListener("click", () => {
+        let getPwInput = icon.parentElement.querySelector("input");
+        if (getPwInput.type === "password") {
+          getPwInput.type = "text";
+          icon.classList.replace("uil-eye-slash", "uil-eye");
+        } else {
+          getPwInput.type = "password";
+          icon.classList.replace("uil-eye", "uil-eye-slash");
+        }
+      });
+    });
+
+    signupBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      formContainer.classList.add("active");
+    });
+    loginBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      formContainer.classList.remove("active");
+    });
+
+    // Get the modal
+    var modal = document.getElementById("contact-modal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("contact-link");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/isotope.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/counter.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+
+  </body>
+</html>

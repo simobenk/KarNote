@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Accueil</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Accueil</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<ul class="box-info">
+    <li>
+        <button id="start-button" style="background-color: #F9F9F9" onclick="startRecording()">
+            <i class='bx bxs-microphone' style="vertical-align: middle;"></i>
+            <span class="text" style="display: inline-block; margin-left: 10px;">
+                <h3 style="margin: 0;">Commencer l'enregistrement</h3>
+                <p style="margin: 0;"></p>
+            </span>
+        </button>
+    </li>
+    <li>
+        <button id="stop-button" onclick="sendVariable()" style="background-color: #F9F9F9">
+            <i class='bx bxs-microphone-off'></i>
+            <span class="text">
+                <h3>Arrêter l'enregistrement</h3>
+                <p></p>
+            </span>
+        </button>
+    </li>
+</ul>
+
+<div class="table-data" id="pdf-table">
+    <div class="order">
+        <div class="head">
+            <h3>Votre speech</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table id="transcription">
+            <tbody>
+                <tr>
+                    <td id="transcription-content"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<button class="chatbot-toggler">
+    <span class="material-symbols-rounded">mode_comment</span>
+    <span class="material-symbols-outlined">close</span>
+</button>
+<div class="chatbot">
+    <header>
+        <h2>Chatbot</h2>
+        <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+    <ul class="chatbox">
+        <li class="chat incoming">
+            <span class="material-symbols-outlined">smart_toy</span>
+            <p>Hi there 👋<br>How can I help you today?</p>
+        </li>
+    </ul>
+    <div class="chat-input">
+        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+        <span id="send-btn" class="material-symbols-rounded">send</span>
+    </div>
+</div>
+
+<script>
+    // JavaScript pour mettre à jour la transcription
+    function updateTranscription(text) {
+        document.getElementById('transcription-content').textContent = text;
+    }
+
+    // Fonction pour démarrer l'enregistrement (exemple)
+    function startRecording() {
+        var exampleText = "L'enregistrement a commencé.";
+        updateTranscription(exampleText);
+
+        // Modifier le bouton de démarrage
+        var startButton = document.getElementById('start-button');
+        startButton.style.backgroundColor = '#F9F9F9';  // Couleur verte
+        startButton.innerHTML = '<i class="bx bxs-microphone" style="vertical-align: middle;"></i><span class="text" style="display: inline-block; margin-left: 10px;"><h3 style="margin: 0;">Enregistrement en cours</h3><p style="margin: 0;"></p></span>';
+        
+    }
+
+    // Fonction factice pour illustrer l'exemple
+    function sendVariable() {
+        var exampleText = "Ceci est un exemple de transcription.";
+        updateTranscription(exampleText);
+    }
+</script>
+
+{% endblock %}

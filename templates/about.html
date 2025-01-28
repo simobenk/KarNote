@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>KarNote</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login/css/bootstrap.css') }}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='login/css/style.css') }}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename='login/css/responsive.css') }}" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+            <span>
+              KarNote
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ url_for('index') }}">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ url_for('about') }}"> À propos de KarNote</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('contact') }}">Contactez-Nous</a>
+                </li>
+              </ul>
+
+            </div>
+            <div class="quote_btn-container ">
+              <a href="">
+                Log in
+              </a>
+              <a href="">
+                <img src="{{ url_for('static', filename='login/images/cart.png') }}" alt="">
+              </a>
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- about section -->
+  <section class="about_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-xl-7">
+          <div class="img-box">
+            <img src="{{ url_for('static', filename='login/images/about-img.png') }}" alt="" />
+          </div>
+        </div>
+        <div class="col-md-5 col-xl-5">
+          <div class="detail_box">
+            <div class="heading_container justify-content-end">
+              <h2>
+                À propros de KarNote 
+              </h2>
+            </div>
+            <p>
+                KarNote est un assistant virtuel conçu pour révolutionner la prise de notes lors des cours magistraux en amphithéâtre. Grâce aux technologies avancées de l'intelligence artificielle, KarNote vous aide à mieux assimiler les cours et à vous préparer efficacement aux examens.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <h5>
+              KarNote
+            </h5>
+            <p>
+              Réinventons la prise de note 
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links pl-lg-5">
+            <h5>
+              Useful Link
+            </h5>
+            <ul>
+              <li>
+                <a href="{{ url_for('index') }}">
+                  Acceuil 
+                </a>
+              </li>
+              <li class="active">
+                <a href="{{ url_for('about') }}">
+                  À propros de KarNote
+                </a>
+              </li>
+              <li>
+                <a href="{{ url_for('contact') }}">
+                  Contactez-Nous 
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="displayYear"></span> All Rights Reserved 
+    </p>
+  </footer>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{{ url_for('static', filename='login/js/jquery-3.4.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='login/js/custom.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='login/js/bootstrap.js') }}"></script>
+
+</body>
+
+</html>

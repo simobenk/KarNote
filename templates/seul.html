@@ -1,0 +1,101 @@
+{% extends "baseprof.html" %}
+{% block content %}
+<div class="head-title">
+    <div class="left">
+        <h1>Résumer son speech</h1>
+        <ul class="breadcrumb">
+            <li><a href="#">Menu</a></li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li><a class="active" href="#">Résumer son speech</a></li>
+        </ul>
+    </div>
+</div>
+  
+<div class="table-data" id="pdf-table">
+    <div class="order">
+        <div class="head">
+            <h3>Votre Speech</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table id="fileTable" >
+            <thead>
+                <tr>
+                    <th>{{speech}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Files will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Loader animation -->
+<div class="loader-container" id="loader-container">
+    <div class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- Upload form with loading animation -->
+<form class="upload-form" action="/upload2" method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+    <input type="submit" value="Résumer">
+</form>
+
+<style>
+    .loader-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader > div {
+        width: 15px;
+        height: 15px;
+        margin: 3px;
+        background-color: #7E30E1;
+        border-radius: 50%;
+        animation: loader 0.6s infinite alternate;
+    }
+
+    .loader > div:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .loader > div:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes loader {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.5);
+            opacity: 0.7;
+        }
+    }
+</style>
+
+<script>
+    function showLoader() {
+        document.getElementById('loader-container').style.display = 'flex';
+    }
+</script>
+{% endblock %}

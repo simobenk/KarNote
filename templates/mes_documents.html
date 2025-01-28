@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Mes Documents</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Menu</a>
+            </li>
+            <li><i class='bx bx-chevron-right'></i></li>
+            <li>
+                <a class="active" href="#">Mes Documents</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Les documents téléchargés</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom des fichiers</th>
+                    <th>Ouvrir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pdf, se in zip(pdf_files, fp) %}
+                <tr>
+                    <td>{{ pdf }}</td>
+                    <td>
+                        <a class="btn download-link" href="{{ se }}" target="_blank" class="btn btn-primary">Ouvrir</a>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function handleDownload(filename) {
+    fetch('/mes_documents/' + filename, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors du téléchargement du fichier');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+</script>
+
+<style>
+/* Styles des boutons */
+.btn {
+    background-color: #7E30E1;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius:36px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #542197;
+}
+</style>
+
+{% endblock %}
